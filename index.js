@@ -1,17 +1,12 @@
 const express = require('express');
 const http = require('http');
 const WebSocket = require('ws');
-
+const cors = require("cors");
 const app = express();
 const server = http.createServer(app);
 
 // CORS middleware to allow any origin
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*'); // Allow any origin
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
+app.use(cors());
 
 // Create a WebSocket server using the same HTTP server
 const wss = new WebSocket.Server({ server });
